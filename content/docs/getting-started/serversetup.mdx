@@ -1,4 +1,82 @@
 ---
 title: Server Setup
-description: Guide to setting up the Potok
+description: Deploy your own Potok server using Docker.
 ---
+
+Potok is fully self-hosted. This guide walks you through the process of getting the server running with Docker Compose.
+
+## Prerequisites
+
+- [Docker](https://docs.docker.com/get-docker/) and
+  [Docker Compose](https://docs.docker.com/compose/install/) installed
+  on your server
+- A domain or IP address for your server (optional but recommended)
+
+## 1. Clone the repository
+
+```bash
+git clone https://github.com/mtiluk/Potok.git
+cd Potok
+```
+
+## 2. Configure environment variables
+
+Copy the example env file and edit it:
+
+```bash
+cp .env.example .env
+```
+
+Open `.env` and set your values:
+
+```bash
+# Server address and port
+PORT=8080
+HOST=localhost
+
+# Database connection
+DATABASE_PATH=./data/potok.db
+MIGRATIONS_PATH=./migrations
+
+# Storage path for vault files
+STORAGE_PATH=./uploads
+```
+
+## 3. Start the server
+
+```bash
+docker compose up -d
+```
+
+This will start the potok server container.
+
+Verify everything is running:
+
+```bash
+docker compose ps
+```
+
+## 4. Verify the server
+
+```
+curl http://localhost:8080/health
+```
+
+## 5. Connect the CLI
+
+On your machine, run:
+
+```bash
+potok init
+```
+
+Enter your server URL (e.g. `http://your-server-ip:8080`) and your `API_KEY`
+
+## What's next?
+
+- [Quickstart](/docs/getting-started/quickstart) — Connect the CLI
+  and sync your first vault
+- [Environment Variables](/docs/self-hosting/environment-variables) —
+  Full reference of all server configuration options
+- [Database](/docs/self-hosting/database) — Migrations, backups,
+  and supported databases
