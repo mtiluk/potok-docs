@@ -1,0 +1,17 @@
+{
+  "title": "Potok",
+  "pages": [
+    "---Getting Started---",
+    "...getting-started",
+    "---Guides---",
+    "...guides",
+    "---Reference---",
+    "...reference",
+    "---Self-Hosting---",
+    "...self-hosting",
+    "---Development---",
+    "...development",
+    "---",
+    "security"
+  ]
+}

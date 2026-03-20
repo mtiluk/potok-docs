@@ -1,0 +1,80 @@
+---
+title: Quickstart
+description: Guide to starting with Potok.
+---
+
+This guide takes you from nothing to a synced vault in a few minutes.
+It assumes you already have the CLI installed ([Installation](installation.md))
+
+## 1. Initialise the CLI
+
+```bash
+potok init
+```
+
+You'll be prompted for two things:
+
+- **Server URL** — The address of your Potok server (e.g. `https://potok.example.com`)
+- **API Key** — Provided by your server admin
+
+The URL is saved to `~/.potok/config.json` and the API key is stored
+in your OS keyring.
+
+## 2. Register a vault
+
+```bash
+potok vault-add
+```
+
+You'll be prompted for:
+
+- **Vault name** — A short label (e.g. `notes`)
+- **Folder path** — The local path to your Obsidian vault
+- **Encryption password** — Used to encrypt your vault before upload
+
+<Callout title="Important" type="warn">
+Remember your encryption paassword. The server never sees it, which means it is unrecoverable.
+</Callout>
+
+## 3. Push your vault
+
+```bash
+potok push notes
+```
+
+This command encrypts every file in the vault locally, then uploads those encrypted files to your server. On first push, the remote vault is created automatically by the server.
+
+## 4. Pull your vault (on another device)
+
+On a second machine with the CLI installed and initialised:
+
+```bash
+potok pull notes --dest ~/Documents/Obsidian/Notes
+```
+
+You'll be prompted for the encryption password you chose in step 2. The vault is downloaded and decrypted into the specific directory. 
+
+## 5. Sync your vault
+
+```bash
+potok sync notes
+```
+
+This watched your vault folder for changes and pushes them automatically. It runs in the foreground and can be stopped with `Ctrl+C`.
+
+## 6. Sync multiple vaults
+
+```bash
+potok daemon
+```
+
+This command is similar to sync but it watches all vaults inside of your config at the same time for changed on the server and locally. 
+
+## What's next?
+
+- [Managing Vaults](../guides/managing-vaults.md) — Rename, remove,
+  and list your vaults
+- [Syncing](../guides/syncing.md) — How push, pull, and sync work
+  under the hood
+- [Troubleshooting](../guides/troubleshooting.md) — Common issues
+  and how to fix them
